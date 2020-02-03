@@ -4,16 +4,15 @@
     <meta charset="UTF-8" />
     <title>myTodo</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="js/xhr.js"></script>
   </head>
   <body>
     <h1>TodoList</h1>
-    <div class="listContainer">
-      __TodoLists__
+    <div id="listContainer">
+      <div id="lists"></div>
       <div class="container">
-        <form action="saveList" method="post">
-          <input type="text" name="TodoList" id="" />
-          <input type="submit" value="submit" />
-        </form>
+        <textarea id="input" cols="30" rows="2"></textarea>
+        <div id="button" onclick="sendRequest()"></div>
       </div>
     </div>
   </body>

@@ -9,3 +9,27 @@ Delete an item from to-do list
 Mark an item as done and undone
 
 Delete a todo list
+
+dataStructure = 
+
+[
+  {
+    id:"1223", title:"home",items:[
+      {
+        id:"12334",
+        title:"buy food",
+        done:"boolean"
+      },
+      {
+        id:"123333",
+        title:"cook food",
+        done:"boolean"
+      },
+      {
+        id:"123333",
+        title:"eat food",
+        done:"boolean"
+      }
+    ]
+  }
+]

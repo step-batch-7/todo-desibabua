@@ -1,0 +1,11 @@
+input[type='checkbox'] {
+  margin: 18px 5px;
+}
+
+.container {
+  display: inline-flex;
+}
+
+.listContainer {
+  display: grid;
+}

@@ -6,6 +6,20 @@ input[type='checkbox'] {
   display: inline-flex;
 }
 
+h1 {
+  text-align: center;
+}
+
+body {
+  background-color: #eee;
+}
+
 .listContainer {
+  margin: 50px auto;
   display: grid;
+  border: 1px solid black;
+  border-radius: 5px;
+  max-width: 200px;
+  padding: 15px;
+  background-color: white;
 }

@@ -15,7 +15,7 @@ input:checked + p {
 }
 
 p {
-  min-width: 72%;
+  width: 72%;
 }
 
 .container:last-child {

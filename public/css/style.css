@@ -14,9 +14,17 @@ input:checked + p {
   font-size: 20px;
 }
 
+p {
+  min-width: 72%;
+}
+
 .container:last-child {
   margin: 5px;
   border-bottom: 0;
+}
+
+.dustbin {
+  margin: 25px 0;
 }
 
 #lists {

@@ -24,10 +24,6 @@ const createDustbin = function() {
 
 const appendItemToPage = function(content) {
   const lists = document.querySelector('#lists');
-  // const item = document.createElement('div');
-  // item.className = 'container';
-  // const checkbox = document.createElement('input');
-  // checkbox.setAttribute('type', 'checkbox');
   const container = createContainer();
   const title = document.createElement('p');
   title.innerText = content.title;
@@ -36,16 +32,6 @@ const appendItemToPage = function(content) {
   container.appendChild(createDustbin());
   lists.appendChild(container);
 };
-
-// eslint-disable-next-line no-lone-blocks
-{
-  /* <img
-  src="https://www.flaticon.com/premium-icon/icons/svg/484/484662.svg"
-  alt=""
-  width="16px"
-  height="16px"
-/>; */
-}
 
 const getInputToAppend = function() {
   const input = document.querySelector('#input');

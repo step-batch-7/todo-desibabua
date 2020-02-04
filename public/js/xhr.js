@@ -11,19 +11,35 @@ const appendItemToPage = function(content) {
   lists.appendChild(item);
 };
 
-const sendRequest = function() {
-  const req = new XMLHttpRequest();
-  req.open('POST', '/saveList');
-  req.setRequestHeader('Content-Type', 'application/json');
-  req.onload = function() {
-    if (req.status === 201) {
-      JSON.parse(req.response).forEach(item => {
-        appendItemToPage(item);
-      });
-    }
-  };
+const getInputToAppend = function() {
   const input = document.querySelector('#input');
   const inputText = input.value;
   input.value = '';
-  req.send(JSON.stringify({ title: inputText }));
+  return JSON.stringify({ title: inputText });
+};
+
+const addTodoItem = function() {
+  const appendItem = function() {
+    const todoItem = JSON.parse(this.response);
+    appendItemToPage(todoItem);
+  };
+  const data = getInputToAppend();
+  newReq(data, 'POST', '/saveList', appendItem);
+};
+
+const loadTodo = function() {
+  const appendItems = function() {
+    const items = JSON.parse(this.response);
+    items.forEach(item => {
+      appendItemToPage(item);
+    });
+  };
+  newReq('', 'GET', '/loadTodo', appendItems);
+};
+
+const newReq = function(data, method, url, callBack) {
+  const req = new XMLHttpRequest();
+  req.open(method, url);
+  req.onload = callBack;
+  req.send(data);
 };

@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/xhr.js"></script>
   </head>
-  <body>
+  <body onload="loadTodo()">
     <h1>TodoList</h1>
     <div id="listContainer">
       <div id="lists"></div>
       <div class="container">
         <textarea id="input" cols="30" rows="2"></textarea>
-        <div id="button" onclick="sendRequest()"></div>
+        <div id="button" onclick="addTodoItem()"></div>
       </div>
     </div>
   </body>

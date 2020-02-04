@@ -4,9 +4,11 @@ const createContainer = function() {
   return item;
 };
 
-const createCheckBox = function() {
+const createCheckBox = function(status) {
   const checkbox = document.createElement('input');
   checkbox.setAttribute('type', 'checkbox');
+  checkbox.onclick = toggleStatus;
+  checkbox.checked = status;
   return checkbox;
 };
 
@@ -28,7 +30,7 @@ const appendItemToPage = function(content) {
   container.id = content.id;
   const title = document.createElement('p');
   title.innerText = content.title;
-  container.appendChild(createCheckBox());
+  container.appendChild(createCheckBox(content.done));
   container.appendChild(title);
   container.appendChild(createDustbin());
   lists.appendChild(container);
@@ -50,14 +52,21 @@ const addTodoItem = function() {
   newReq(data, 'POST', '/saveList', appendItem);
 };
 
+const renderTodo = function() {
+  const items = JSON.parse(this.response);
+  items.forEach(item => {
+    appendItemToPage(item);
+  });
+};
+
 const loadTodo = function() {
-  const appendItems = function() {
-    const items = JSON.parse(this.response);
-    items.forEach(item => {
-      appendItemToPage(item);
-    });
-  };
-  newReq('', 'GET', '/loadTodo', appendItems);
+  renderTodo.bind(this);
+  newReq('', 'GET', '/loadTodo', renderTodo);
+};
+
+const toggleStatus = function() {
+  const id = event.target.parentElement.id;
+  newReq(id, 'POST', '/toggleCheckBox', () => {});
 };
 
 const newReq = function(data, method, url, callBack) {

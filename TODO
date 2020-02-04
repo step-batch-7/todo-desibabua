@@ -33,3 +33,9 @@ dataStructure =
     ]
   }
 ]
+
+///////////-------------
+ `<div class="container">
+    <input type="checkbox" />
+    <p>${list.title}</p>
+  </div>`

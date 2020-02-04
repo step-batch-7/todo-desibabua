@@ -7,12 +7,14 @@
     <script src="js/xhr.js"></script>
   </head>
   <body onload="loadTodo()">
-    <h1>TodoList</h1>
+    <div class="header">
+      <h1>TodoList</h1>
+    </div>
     <div id="listContainer">
       <div id="lists"></div>
       <div class="container">
-        <textarea id="input" cols="30" rows="2"></textarea>
-        <div id="button" onclick="addTodoItem()"></div>
+        <input type="text" id="input"/>
+        <div id="button" onclick="addTodoItem()">+</div>
       </div>
     </div>
   </body>

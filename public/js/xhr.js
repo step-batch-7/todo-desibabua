@@ -25,6 +25,7 @@ const createDustbin = function() {
 const appendItemToPage = function(content) {
   const lists = document.querySelector('#lists');
   const container = createContainer();
+  container.id = content.id;
   const title = document.createElement('p');
   title.innerText = content.title;
   container.appendChild(createCheckBox());

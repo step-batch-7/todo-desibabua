@@ -21,6 +21,7 @@ const createDustbin = function() {
   img.setAttribute('width', '16px');
   img.setAttribute('height', '16px');
   img.className = 'dustbin';
+  img.onclick = deleteElement;
   return img;
 };
 
@@ -67,6 +68,16 @@ const loadTodo = function() {
 const toggleStatus = function() {
   const id = event.target.parentElement.id;
   newReq(id, 'POST', '/toggleCheckBox', () => {});
+};
+
+const deleteElement = function() {
+  const id = event.target.parentElement.id;
+  const removeChild = function() {
+    const lists = document.getElementById('lists');
+    const child = document.getElementById(this.response);
+    lists.removeChild(child);
+  };
+  newReq(id, 'POST', '/deleteList', removeChild);
 };
 
 const newReq = function(data, method, url, callBack) {

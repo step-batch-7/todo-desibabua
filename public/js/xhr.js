@@ -37,11 +37,16 @@ const appendItemToPage = function(content) {
   lists.appendChild(container);
 };
 
-const getInputToAppend = function() {
-  const input = document.querySelector('#input');
+const getInputToAppend = function(id) {
+  const input = document.querySelector(id);
   const inputText = input.value;
   input.value = '';
   return JSON.stringify({ title: inputText });
+};
+
+const recordTodoHeading = function() {
+  const input = getInputToAppend('#inputBox');
+  newReq(input, 'POST', '/saveHeading', () => console.log('----'));
 };
 
 const addTodoItem = function() {
@@ -49,7 +54,7 @@ const addTodoItem = function() {
     const todoItem = JSON.parse(this.response);
     appendItemToPage(todoItem);
   };
-  const data = getInputToAppend();
+  const data = getInputToAppend('#input');
   newReq(data, 'POST', '/saveList', appendItem);
 };
 

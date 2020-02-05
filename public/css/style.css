@@ -1,3 +1,39 @@
+.sideBar {
+  width: 20vw;
+  height: 100vh;
+  background-color: rgb(249, 249, 249);
+  color: black;
+}
+
+.heading {
+  padding: 30px;
+}
+
+.plus {
+  font-size: 3rem;
+  font-weight: 100;
+}
+
+#form {
+  border: 1px solid black;
+  padding: 20px 30px;
+}
+
+#inputBox {
+  font-size: 1.5rem;
+  width: 220px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+button {
+  margin:  15px 5px;
+  font-size: 1rem;
+  padding: 8px;
+  min-width: 100px;
+  border-radius: 5px;
+}
+
 input[type='checkbox'] {
   margin: 25px;
 }
@@ -50,19 +86,27 @@ input:focus {
 .header {
   max-width: 340px;
   background-color: #aaa;
-  margin: 50px auto 0px;  
-  padding:1px;
+  margin: 50px auto 0px;
+  padding: 1px;
   border-radius: 5px;
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
 }
 
-h1 {
+h1,
+h2 {
   text-align: center;
-  margin:10px;
+  margin: 10px;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 2rem;
 }
 
 body {
   background-color: #eee;
+  margin: 0px;
+  font-family: sans-serif;
 }
 
 #button {
@@ -73,7 +117,7 @@ body {
   margin: 10px 0px 10px 20px;
   text-align: center;
   font-size: 30px;
-  color:#ddd;
+  color: #ddd;
 }
 
 #listContainer {

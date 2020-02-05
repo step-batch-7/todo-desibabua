@@ -86,3 +86,13 @@ const newReq = function(data, method, url, callBack) {
   req.onload = callBack;
   req.send(data);
 };
+
+const showForm = function() {
+  const form = document.querySelector('#form');
+  form.style.display = 'block';
+};
+
+const hideForm = function() {
+  const form = document.querySelector('#form');
+  form.style.display = 'none';
+};

@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/xhr.js"></script>
   </head>
-  <body onload="loadTodo()">
-    <div class="header">
+  <!-- <body onload="loadTodo()"> -->
+  <!-- <div class="header">
       <h1>TodoList</h1>
     </div>
     <div id="listContainer">
@@ -15,6 +15,22 @@
       <div class="container">
         <input type="text" id="input" />
         <div id="button" onclick="addTodoItem()">+</div>
+      </div>
+    </div> -->
+  <!-- </body> -->
+  <body>
+    <div class="sideBar">
+      <div class="heading">
+        <h2>Task Lists <span class="plus" onclick="showForm()"> + </span></h2>
+      </div>
+      <div id="form">
+        <form action="" method="post">
+          <input type="text" name="" id="inputBox" required />
+          <button type="submit" class="greyButton" onclick="hideForm()">
+            save
+          </button>
+          <button class="button" onclick="hideForm()">cancel</button>
+        </form>
       </div>
     </div>
   </body>

@@ -44,9 +44,25 @@ const getInputToAppend = function(id) {
   return JSON.stringify({ title: inputText });
 };
 
+const getHeading = function(content) {
+  const div = document.createElement('div');
+  div.className = 'singleHead';
+  div.id = content.id;
+  const headline = document.createElement('h3');
+  headline.innerText = content.heading;
+  div.appendChild(headline);
+  return div;
+};
+
 const recordTodoHeading = function() {
+  const appendHeading = function() {
+    const item = JSON.parse(this.response);
+    const heading = getHeading(item);
+    const head = document.querySelector('.head');
+    head.appendChild(heading);
+  };
   const input = getInputToAppend('#inputBox');
-  newReq(input, 'POST', '/saveHeading', () => console.log('----'));
+  newReq(input, 'POST', '/saveHeading', appendHeading);
 };
 
 const addTodoItem = function() {

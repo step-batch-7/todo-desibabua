@@ -6,18 +6,6 @@
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/xhr.js"></script>
   </head>
-  <!-- <body onload="loadTodo()"> -->
-  <!-- <div class="header">
-      <h1>TodoList</h1>
-    </div>
-    <div id="listContainer">
-      <div id="lists"></div>
-      <div class="container">
-        <input type="text" id="input" />
-        <div id="button" onclick="addTodoItem()">+</div>
-      </div>
-    </div> -->
-  <!-- </body> -->
   <body onload="loadHeading()">
     <div class="sideBar">
       <div class="heading">
@@ -30,7 +18,20 @@
         </button>
         <button class="button" onclick="hideForm()">cancel</button>
       </div>
-      <div class="head"></div>
+      <div class="head"></div> 
+      <!-- onload should be called on each head  -->
+    </div>
+    <div class="todoList">
+      <div class="header">
+        <h1>TodoList</h1>
+      </div>
+      <div id="listContainer">
+        <div id="lists"></div>
+        <div class="container">
+          <input type="text" id="input" />
+          <div id="button" onclick="addTodoItem()">+</div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

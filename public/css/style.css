@@ -3,6 +3,13 @@
   height: 100vh;
   background-color: rgb(249, 249, 249);
   color: black;
+  position: absolute;
+  left: 0px;
+}
+
+.todoList {
+  position: absolute;
+  left:500px;
 }
 
 .heading {

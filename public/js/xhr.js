@@ -54,12 +54,28 @@ const getHeading = function(content) {
   return div;
 };
 
+const renderHeading = function() {
+  const items = JSON.parse(this.response);
+  items.forEach(item => {
+    appendHeadingToPage(item);
+  });
+};
+
+const appendHeadingToPage = function(item) {
+  const heading = getHeading(item);
+  const head = document.querySelector('.head');
+  head.appendChild(heading);
+};
+
+const loadHeading = function() {
+  renderHeading.bind(this.response);
+  newReq('', 'GET', '/saveAllHeading', renderHeading);
+};
+
 const recordTodoHeading = function() {
   const appendHeading = function() {
     const item = JSON.parse(this.response);
-    const heading = getHeading(item);
-    const head = document.querySelector('.head');
-    head.appendChild(heading);
+    appendHeadingToPage(item);
   };
   const input = getInputToAppend('#inputBox');
   newReq(input, 'POST', '/saveHeading', appendHeading);

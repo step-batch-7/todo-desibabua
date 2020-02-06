@@ -14,12 +14,9 @@ const createCheckBox = function(status) {
 
 const createDustbin = function() {
   const img = document.createElement('img');
-  img.setAttribute(
-    'src',
-    'https://www.flaticon.com/premium-icon/icons/svg/484/484662.svg'
-  );
-  img.setAttribute('width', '16px');
-  img.setAttribute('height', '16px');
+  img.setAttribute('src', 'images/dustbin.png');
+  img.setAttribute('width', '20px');
+  img.setAttribute('height', '20px');
   img.className = 'dustbin';
   img.onclick = deleteTodo;
   return img;
@@ -79,6 +76,8 @@ const recordTodoHeading = function() {
     appendHeadingToPage(item);
   };
   const input = getInputToAppend('#inputBox');
+  const form = document.querySelector('#form');
+  form.style.display = 'none';
   newReq(input, 'POST', '/saveHeading', appendHeading);
 };
 

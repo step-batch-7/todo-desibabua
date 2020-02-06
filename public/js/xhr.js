@@ -21,7 +21,7 @@ const createDustbin = function() {
   img.setAttribute('width', '16px');
   img.setAttribute('height', '16px');
   img.className = 'dustbin';
-  img.onclick = deleteElement;
+  img.onclick = deleteTodo;
   return img;
 };
 
@@ -130,14 +130,20 @@ const toggleStatus = function() {
   newReq(id, 'POST', '/toggleCheckBox', () => {});
 };
 
-const deleteElement = function() {
-  const id = event.target.parentElement.id;
+const deleteTodo = function() {
+  const idOfChild = event.target.parentElement.id;
+  const idOfParent = document.getElementsByTagName('h1')[0].id;
   const removeChild = function() {
     const lists = document.getElementById('lists');
     const child = document.getElementById(this.response);
     lists.removeChild(child);
   };
-  newReq(id, 'POST', '/deleteList', removeChild);
+  newReq(
+    JSON.stringify({ idOfChild, idOfParent }),
+    'POST',
+    '/deleteList',
+    removeChild
+  );
 };
 
 const newReq = function(data, method, url, callBack) {

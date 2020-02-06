@@ -48,7 +48,7 @@ const getHeading = function(content) {
   const headline = document.createElement('h3');
   headline.innerText = content.heading;
   div.appendChild(headline);
-  div.onclick = loadTodo;
+  div.onclick = loadTodo.bind(null, content.id);
   return div;
 };
 
@@ -112,8 +112,7 @@ const createTodoPage = function(id, title) {
     </div> `;
 };
 
-const loadTodo = function() {
-  const taskId = event.target.parentElement.id;
+const loadTodo = function(taskId) {
   const callBack = function() {
     const form = document.querySelector('.todoList');
     form.style.display = 'block';

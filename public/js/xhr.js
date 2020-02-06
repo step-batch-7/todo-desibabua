@@ -12,13 +12,15 @@ const createCheckBox = function(status) {
   return checkbox;
 };
 
-const createDustbin = function() {
+const deleteHeading = function() {};
+
+const createDustbin = function(deleteFunction) {
   const img = document.createElement('img');
   img.setAttribute('src', 'images/dustbin.png');
   img.setAttribute('width', '20px');
   img.setAttribute('height', '20px');
   img.className = 'dustbin';
-  img.onclick = deleteTodo;
+  img.onclick = deleteFunction;
   return img;
 };
 
@@ -30,7 +32,7 @@ const appendItemToPage = function(content) {
   title.innerText = content.title;
   container.appendChild(createCheckBox(content.done));
   container.appendChild(title);
-  container.appendChild(createDustbin());
+  container.appendChild(createDustbin(20, deleteTodo));
   lists.appendChild(container);
 };
 
@@ -48,6 +50,8 @@ const getHeading = function(content) {
   const headline = document.createElement('h3');
   headline.innerText = content.heading;
   div.appendChild(headline);
+  ///----------------------------
+  div.appendChild(createDustbin(deleteHeading));
   div.onclick = loadTodo.bind(null, content.id);
   return div;
 };
@@ -113,6 +117,7 @@ const createTodoPage = function(id, title) {
 };
 
 const loadTodo = function(taskId) {
+  // const taskId = event.target.parentElement.id;
   const callBack = function() {
     const form = document.querySelector('.todoList');
     form.style.display = 'block';

@@ -41,7 +41,8 @@ dataStructure =
   </div>`
 
 //===========================
-* transfer on click function to div instead of h3
+
+--done-- transfer on click function to div instead of h3
 
 * add delete functionality to heading
 

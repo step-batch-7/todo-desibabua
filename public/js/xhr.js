@@ -12,7 +12,17 @@ const createCheckBox = function(status) {
   return checkbox;
 };
 
-const deleteHeading = function() {};
+const deleteHeading = function(id) {
+  const removeTodo = function() {
+    const id = JSON.parse(this.response).id;
+    const headingInSideBar = document.getElementById(id);
+    const headingInTodoList = document.getElementById(`${id}:c`).parentElement
+      .parentElement;
+    headingInSideBar.remove();
+    headingInTodoList.innerHTML = '';
+  };
+  newReq(JSON.stringify({ id }), 'POST', '/deleteHeading', removeTodo);
+};
 
 const createDustbin = function(deleteFunction) {
   const img = document.createElement('img');
@@ -32,7 +42,7 @@ const appendItemToPage = function(content) {
   title.innerText = content.title;
   container.appendChild(createCheckBox(content.done));
   container.appendChild(title);
-  container.appendChild(createDustbin(20, deleteTodo));
+  container.appendChild(createDustbin(deleteTodo.bind(null, content.id)));
   lists.appendChild(container);
 };
 
@@ -49,10 +59,9 @@ const getHeading = function(content) {
   div.id = content.id;
   const headline = document.createElement('h3');
   headline.innerText = content.heading;
+  headline.onclick = loadTodo.bind(null, content.id);
   div.appendChild(headline);
-  ///----------------------------
-  div.appendChild(createDustbin(deleteHeading));
-  div.onclick = loadTodo.bind(null, content.id);
+  div.appendChild(createDustbin(deleteHeading.bind(null, content.id)));
   return div;
 };
 
@@ -117,7 +126,6 @@ const createTodoPage = function(id, title) {
 };
 
 const loadTodo = function(taskId) {
-  // const taskId = event.target.parentElement.id;
   const callBack = function() {
     const form = document.querySelector('.todoList');
     form.style.display = 'block';
@@ -139,8 +147,7 @@ const toggleStatus = function() {
   );
 };
 
-const deleteTodo = function() {
-  const idOfChild = event.target.parentElement.id;
+const deleteTodo = function(idOfChild) {
   const idOfParent = document.getElementsByTagName('h1')[0].id;
   const removeChild = function() {
     const lists = document.getElementById('lists');

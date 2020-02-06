@@ -51,6 +51,7 @@ const getHeading = function(content) {
   const headline = document.createElement('h3');
   headline.innerText = content.heading;
   div.appendChild(headline);
+  div.onclick = loadTodo;
   return div;
 };
 
@@ -86,20 +87,42 @@ const addTodoItem = function() {
     const todoItem = JSON.parse(this.response);
     appendItemToPage(todoItem);
   };
+  const heading = document.getElementsByTagName('h1')[0];
+  const id = heading.id;
   const data = getInputToAppend('#input');
-  newReq(data, 'POST', '/saveList', appendItem);
+  newReq(JSON.stringify({ data, id }), 'POST', '/saveList', appendItem);
 };
 
-const renderTodo = function() {
-  const items = JSON.parse(this.response);
-  items.forEach(item => {
+const renderTodo = function(lists) {
+  lists.forEach(item => {
     appendItemToPage(item);
   });
 };
 
+const createTodoPage = function(id, title) {
+  return `
+    <div class="header">
+      <h1 id=${id}:c >${title}</h1>
+    </div>
+      <div id="listContainer">
+        <div id="lists"></div>
+        <div class="container">
+        <input type="text" id="input" />
+        <div id="button" onclick="addTodoItem()">+</div>
+      </div>
+    </div> `;
+};
+
 const loadTodo = function() {
-  renderTodo.bind(this);
-  newReq('', 'GET', '/loadTodo', renderTodo);
+  const taskId = event.target.parentElement.id;
+  const callBack = function() {
+    const form = document.querySelector('.todoList');
+    form.style.display = 'block';
+    const lists = JSON.parse(this.response);
+    form.innerHTML = createTodoPage(taskId, lists.heading);
+    renderTodo(lists.list);
+  };
+  newReq(taskId, 'POST', '/loadTodo', callBack);
 };
 
 const toggleStatus = function() {
@@ -124,8 +147,8 @@ const newReq = function(data, method, url, callBack) {
   req.send(data);
 };
 
-const showForm = function() {
-  const form = document.querySelector('#form');
+const showForm = function(id) {
+  const form = document.querySelector(id);
   form.style.display = 'block';
 };
 

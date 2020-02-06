@@ -9,7 +9,9 @@
   <body onload="loadHeading()">
     <div class="sideBar">
       <div class="heading">
-        <h2>Task Lists <span class="plus" onclick="showForm()"> + </span></h2>
+        <h2>
+          Task Lists <span class="plus" onclick="showForm('#form')"> + </span>
+        </h2>
       </div>
       <div id="form">
         <input type="text" name="" id="inputBox" required />
@@ -18,20 +20,9 @@
         </button>
         <button class="button" onclick="hideForm()">cancel</button>
       </div>
-      <div class="head"></div> 
-      <!-- onload should be called on each head  -->
+      <div class="head"></div>
     </div>
     <div class="todoList">
-      <div class="header">
-        <h1>TodoList</h1>
-      </div>
-      <div id="listContainer">
-        <div id="lists"></div>
-        <div class="container">
-          <input type="text" id="input" />
-          <div id="button" onclick="addTodoItem()">+</div>
-        </div>
-      </div>
     </div>
   </body>
 </html>

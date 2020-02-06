@@ -126,8 +126,14 @@ const loadTodo = function() {
 };
 
 const toggleStatus = function() {
-  const id = event.target.parentElement.id;
-  newReq(id, 'POST', '/toggleCheckBox', () => {});
+  const idOfChild = event.target.parentElement.id;
+  const idOfParent = document.getElementsByTagName('h1')[0].id;
+  newReq(
+    JSON.stringify({ idOfChild, idOfParent }),
+    'POST',
+    '/toggleCheckBox',
+    () => {}
+  );
 };
 
 const deleteTodo = function() {

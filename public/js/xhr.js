@@ -16,10 +16,11 @@ const deleteHeading = function(id) {
   const removeTodo = function() {
     const id = JSON.parse(this.response).id;
     const headingInSideBar = document.getElementById(id);
-    const headingInTodoList = document.getElementById(`${id}:c`).parentElement
-      .parentElement;
+    const headingInTodoList = document.getElementById(`${id}:c`);
     headingInSideBar.remove();
-    headingInTodoList.innerHTML = '';
+    if (headingInTodoList) {
+      headingInTodoList.parentElement.parentElement.innerHTML = '';
+    }
   };
   newReq(JSON.stringify({ id }), 'POST', '/deleteHeading', removeTodo);
 };

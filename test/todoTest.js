@@ -58,7 +58,7 @@ describe('GET', function() {
     request(app.serve.bind(app))
       .get('/js/xhr.js')
       .set('Accept', '*/*')
-      .expect('content-length', '4954')
+      .expect('content-length', '4949')
       .expect('content-type', /javascript/)
       .expect(200, done);
   });
@@ -101,6 +101,15 @@ describe('POST by xhr request', function() {
       .set('Accept', '*/*')
       .send('{"itemId":"1581074691762","todoId":"1581074678976"}')
       .expect('content-length', '13')
+      .expect(201, done);
+  });
+
+  it('should add todoItem of todo', function(done) {
+    request(app.serve.bind(app))
+      .post('/saveList')
+      .set('Accept', '*/*')
+      .send('{"title":"hello", "id":"1581074678976:c" }')
+      .expect('content-length', '51')
       .expect(201, done);
   });
 });

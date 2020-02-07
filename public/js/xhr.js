@@ -49,7 +49,7 @@ const getInputToAppend = function(id) {
   const input = document.querySelector(id);
   const inputText = input.value;
   input.value = '';
-  return JSON.stringify({ title: inputText });
+  return inputText;
 };
 
 const getHeading = function({ id, heading }) {
@@ -85,7 +85,7 @@ const recordTodoHeading = function() {
   const input = getInputToAppend('#inputBox');
   const form = document.querySelector('#form');
   form.style.display = 'none';
-  newReq(input, 'POST', '/saveHeading', appendHeading);
+  newReq(JSON.stringify({ input }), 'POST', '/saveHeading', appendHeading);
 };
 
 const addTodoItem = function() {
@@ -95,8 +95,8 @@ const addTodoItem = function() {
   };
   const heading = document.getElementsByTagName('h1')[0];
   const id = heading.id;
-  const data = getInputToAppend('#input');
-  newReq(JSON.stringify({ data, id }), 'POST', '/saveList', appendItem);
+  const title = getInputToAppend('#input');
+  newReq(JSON.stringify({ title, id }), 'POST', '/saveList', appendItem);
 };
 
 const renderTodo = function(lists) {

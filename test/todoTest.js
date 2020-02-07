@@ -112,4 +112,22 @@ describe('POST by xhr request', function() {
       .expect('content-length', '51')
       .expect(201, done);
   });
+
+  it('should add todo List in app', function(done) {
+    request(app.serve.bind(app))
+      .post('/saveHeading')
+      .set('Accept', '*/*')
+      .send('{"input":"my name is khan"}')
+      .expect('content-length', '80')
+      .expect(201, done);
+  });
+
+  it('should remove todo List in app', function(done) {
+    request(app.serve.bind(app))
+      .post('/deleteHeading')
+      .set('Accept', '*/*')
+      .send('{"id":"1581074678976"}')
+      .expect('content-length', '22')
+      .expect(201, done);
+  });
 });

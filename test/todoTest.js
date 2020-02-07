@@ -94,4 +94,13 @@ describe('POST by xhr request', function() {
       .expect('content-length', '0')
       .expect(201, done);
   });
+
+  it('should delete todoItem of todo', function(done) {
+    request(app.serve.bind(app))
+      .post('/deleteList')
+      .set('Accept', '*/*')
+      .send('{"itemId":"1581074691762","todoId":"1581074678976"}')
+      .expect('content-length', '13')
+      .expect(201, done);
+  });
 });

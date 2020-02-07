@@ -119,9 +119,9 @@ const createTodoPage = function(id, title) {
     </div>
       <div id="listContainer">
         <div id="lists"></div>
-        <div class="container">
+        <div class="taskInput">
         <input type="text" id="input" />
-        <div id="button" onclick="addTodoItem()">+</div>
+        <div id="button" onclick="addTodoItem()" autocomplete="off">+</div>
       </div>
     </div> `;
 };

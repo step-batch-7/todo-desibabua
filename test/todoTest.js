@@ -74,3 +74,15 @@ describe('GET by xhr request', function() {
       .expect(200, done);
   });
 });
+
+describe('POST by xhr request', function() {
+  it('should load Previous todoItems when requested with /loadTodo', function(done) {
+    request(app.serve.bind(app))
+      .post('/loadTodo')
+      .set('Accept', '*/*')
+      .send('1581074678976')
+      .expect('content-length', '308')
+      .expect('content-type', /json/)
+      .expect(200, done);
+  });
+});

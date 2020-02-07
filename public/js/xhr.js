@@ -127,29 +127,24 @@ const loadTodo = function(taskId) {
     form.innerHTML = createTodoPage(taskId, lists.heading);
     renderTodo(lists.list);
   };
-  newReq(taskId, 'POST', '/loadTodo', callBack);
+  newReq(JSON.stringify({ taskId }), 'POST', '/loadTodo', callBack);
 };
 
 const toggleStatus = function() {
-  const idOfChild = event.target.parentElement.id;
-  const idOfParent = document.getElementsByTagName('h1')[0].id;
-  newReq(
-    JSON.stringify({ idOfChild, idOfParent }),
-    'POST',
-    '/toggleCheckBox',
-    () => {}
-  );
+  const itemId = event.target.parentElement.id;
+  const todoId = document.getElementsByTagName('h1')[0].id;
+  newReq(JSON.stringify({ itemId, todoId }), 'POST', '/toggleStatus', () => {});
 };
 
-const deleteTodo = function(idOfChild) {
-  const idOfParent = document.getElementsByTagName('h1')[0].id;
+const deleteTodo = function(itemId) {
+  const todoId = document.getElementsByTagName('h1')[0].id;
   const removeChild = function() {
     const lists = document.getElementById('lists');
     const child = document.getElementById(this.response);
     lists.removeChild(child);
   };
   newReq(
-    JSON.stringify({ idOfChild, idOfParent }),
+    JSON.stringify({ itemId, todoId }),
     'POST',
     '/deleteList',
     removeChild

@@ -58,7 +58,7 @@ describe('GET', function() {
     request(app.serve.bind(app))
       .get('/js/xhr.js')
       .set('Accept', '*/*')
-      .expect('content-length', '4984')
+      .expect('content-length', '4954')
       .expect('content-type', /javascript/)
       .expect(200, done);
   });
@@ -80,7 +80,7 @@ describe('POST by xhr request', function() {
     request(app.serve.bind(app))
       .post('/loadTodo')
       .set('Accept', '*/*')
-      .send('1581074678976')
+      .send('{"taskId":"1581074678976"}')
       .expect('content-length', '308')
       .expect('content-type', /json/)
       .expect(200, done);

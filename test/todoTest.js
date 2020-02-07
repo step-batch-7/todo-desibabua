@@ -10,6 +10,10 @@ createSampleTODO();
 
 const app = require('../lib/handlers');
 
+after(() => {
+  fs.truncateSync(TODO_STORE);
+});
+
 describe('PUT', function() {
   it('should respond with 404 when method is not allowed', function(done) {
     request(app.serve.bind(app))
@@ -69,7 +73,7 @@ describe('GET by xhr request', function() {
     request(app.serve.bind(app))
       .get('/loadHeading')
       .set('Accept', '*/*')
-      .expect('content-length', '788')
+      .expect('content-length', '787')
       .expect('content-type', /json/)
       .expect(200, done);
   });
@@ -81,16 +85,25 @@ describe('POST by xhr request', function() {
       .post('/loadTodo')
       .set('Accept', '*/*')
       .send('{"taskId":"1581074678976"}')
-      .expect('content-length', '308')
+      .expect('content-length', '307')
       .expect('content-type', /json/)
       .expect(200, done);
   });
 
-  it('should toggle the status of todoItem', function(done) {
+  it('should toggle the status of todoItem from false to true', function(done) {
     request(app.serve.bind(app))
       .post('/toggleStatus')
       .set('Accept', '*/*')
       .send('{"itemId":"1581074691762","todoId":"1581074678976"}')
+      .expect('content-length', '0')
+      .expect(201, done);
+  });
+
+  it('should toggle the status of todoItem from true to false', function(done) {
+    request(app.serve.bind(app))
+      .post('/toggleStatus')
+      .set('Accept', '*/*')
+      .send('{"itemId":"1581074697060","todoId":"1581074678976"}')
       .expect('content-length', '0')
       .expect(201, done);
   });

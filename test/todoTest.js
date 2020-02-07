@@ -85,4 +85,13 @@ describe('POST by xhr request', function() {
       .expect('content-type', /json/)
       .expect(200, done);
   });
+
+  it('should toggle the status of todoItem', function(done) {
+    request(app.serve.bind(app))
+      .post('/toggleStatus')
+      .set('Accept', '*/*')
+      .send('{"itemId":"1581074691762","todoId":"1581074678976"}')
+      .expect('content-length', '0')
+      .expect(201, done);
+  });
 });

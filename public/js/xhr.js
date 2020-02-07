@@ -1,13 +1,12 @@
-const createContainer = function() {
-  const item = document.createElement('div');
-  item.className = 'container';
-  return item;
+const htmlToElements = function(html) {
+  const template = document.createElement('template');
+  template.innerHTML = html;
+  return template.content.firstChild;
 };
 
 const createCheckBox = function(status) {
-  const checkbox = document.createElement('input');
-  checkbox.setAttribute('type', 'checkbox');
-  checkbox.onclick = toggleStatus;
+  let checkbox = '<input type="checkbox" onclick="toggleStatus">';
+  checkbox = htmlToElements(checkbox);
   checkbox.checked = status;
   return checkbox;
 };
@@ -26,19 +25,18 @@ const deleteHeading = function(id) {
 };
 
 const createDustbin = function(deleteFunction) {
-  const img = document.createElement('img');
-  img.setAttribute('src', 'images/dustbin.png');
-  img.setAttribute('width', '20px');
-  img.setAttribute('height', '20px');
-  img.className = 'dustbin';
+  const html =
+    '<img src="images/dustbin.png" width="20px" height="20px" class="dustbin">';
+  const img = htmlToElements(html);
   img.onclick = deleteFunction;
   return img;
 };
 
 const appendItemToPage = function(content) {
   const lists = document.querySelector('#lists');
-  const container = createContainer();
-  container.id = content.id;
+  const container = htmlToElements(
+    `<div class="container" id=${content.id}></div>`
+  );
   const title = document.createElement('p');
   title.innerText = content.title;
   container.appendChild(createCheckBox(content.done));
@@ -54,16 +52,11 @@ const getInputToAppend = function(id) {
   return JSON.stringify({ title: inputText });
 };
 
-const getHeading = function(content) {
-  const div = document.createElement('div');
-  div.className = 'singleHead';
-  div.id = content.id;
-  const headline = document.createElement('h3');
-  headline.innerText = content.heading;
-  headline.onclick = loadTodo.bind(null, content.id);
-  div.appendChild(headline);
-  div.appendChild(createDustbin(deleteHeading.bind(null, content.id)));
-  return div;
+const getHeading = function({ id, heading }) {
+  let headline = `<div class='singleHead' id=${id}><h3 onclick="loadTodo(${id})">${heading}</h3></div>`;
+  headline = htmlToElements(headline);
+  headline.appendChild(createDustbin(deleteHeading.bind(null, id)));
+  return headline;
 };
 
 const renderHeading = function() {
@@ -123,7 +116,7 @@ const createTodoPage = function(id, title) {
         <input type="text" id="input" />
         <div id="button" onclick="addTodoItem()" autocomplete="off">+</div>
       </div>
-    </div> `;
+    </div>`;
 };
 
 const loadTodo = function(taskId) {

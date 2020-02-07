@@ -1,5 +1,23 @@
 const request = require('supertest');
+const { TODO_STORE, SAMPLE_TODO } = require('../config');
+const fs = require('fs');
+
+const createSampleTODO = function() {
+  const sampleContent = fs.readFileSync(SAMPLE_TODO, 'utf8');
+  fs.writeFileSync(TODO_STORE, sampleContent);
+};
+createSampleTODO();
+
 const app = require('../lib/handlers');
+
+describe('PUT', function() {
+  it('should respond with 404 when method is not allowed', function(done) {
+    request(app.serve.bind(app))
+      .put('/badFile')
+      .set('Accept', '*/*')
+      .expect(404, done);
+  });
+});
 
 describe('GET', function() {
   it('should respond with 404 when file is not present', function(done) {
@@ -40,17 +58,19 @@ describe('GET', function() {
     request(app.serve.bind(app))
       .get('/js/xhr.js')
       .set('Accept', '*/*')
-      .expect('content-length', '4987')
+      .expect('content-length', '4984')
       .expect('content-type', /javascript/)
       .expect(200, done);
   });
 });
 
-describe('GET', function() {
-  it('should respond with 404 when method is not allowed', function(done) {
+describe('GET by xhr request', function() {
+  it('should load Previous todo when requested with /loadHeading', function(done) {
     request(app.serve.bind(app))
-      .put('/badFile')
+      .get('/loadHeading')
       .set('Accept', '*/*')
-      .expect(404, done);
+      .expect('content-length', '788')
+      .expect('content-type', /json/)
+      .expect(200, done);
   });
 });

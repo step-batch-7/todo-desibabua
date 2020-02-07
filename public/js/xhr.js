@@ -74,7 +74,7 @@ const appendHeadingToPage = function(item) {
 
 const loadHeading = function() {
   renderHeading.bind(this.response);
-  newReq('', 'GET', '/saveAllHeading', renderHeading);
+  newReq('', 'GET', '/loadHeading', renderHeading);
 };
 
 const recordTodoHeading = function() {

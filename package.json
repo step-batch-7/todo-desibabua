@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "export TODO_STORE=$(pwd)/test/dataBaseTest/todoHistory.json ; nyc mocha",
+    "test": "export TODO_STORE=$(pwd)/test/dataBaseTest/todoHistory.json ;export SAMPLE_TODO=$(pwd)/test/dataBaseTest/sampleTODO.json; nyc mocha",
     "start": "export TODO_STORE=$(pwd)/dataBase/todoHistory.json ; node server.js"
   },
   "repository": {

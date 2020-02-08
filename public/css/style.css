@@ -1,14 +1,15 @@
 .sideBar {
   width: 20vw;
   height: 100vh;
-  background-color: white;
+  background-color: lightgrey;
   position: absolute;
+  box-shadow: 5px 15px 15px -5px rgba(0, 0, 0, 0.4);
 }
 
 .todoList {
-  position: absolute;
-  left: 500px;
+  margin: auto;
   display: none;
+  width: 35vw;
 }
 
 .heading {
@@ -17,6 +18,7 @@
 
 .singleHead {
   display: flex;
+  background: #ddd;
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
 }
 
@@ -28,15 +30,20 @@
 
 #form {
   border: 1px solid black;
-  padding: 20px 30px;
+  padding: 15px 20px;
   display: none;
+  border-radius: 5px;
+  background-color: #eee;
+}
+
+.greyButton {
+  background: darkgrey;
 }
 
 #inputBox {
   font-size: 1.5rem;
   width: 94%;
-  /* border: 1px solid black; */
-  /* border-radius: 5px; */
+  background: transparent;
 }
 
 button {
@@ -86,7 +93,7 @@ input[type='text'] {
   border: none;
   padding-left: 10px;
   width: 75%;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid darkgrey;
   font-size: 20px;
 }
 
@@ -97,7 +104,7 @@ input:focus {
 
 .header {
   width: 100%;
-  background-color: #aaa;
+  background-color: darkgrey;
   margin: 50px auto 0px;
   padding: 1px;
   border-radius: 5px;
@@ -133,7 +140,7 @@ body {
   height: 40px;
   border-radius: 50%;
   background-color: #aaa;
-  margin: 10px 0px 10px 20px;
+  margin: 10px 0px 10px 30px;
   text-align: center;
   font-size: 30px;
   color: #ddd;
@@ -141,11 +148,11 @@ body {
 }
 
 #listContainer {
-  margin: 30px auto 0px;
+  margin: 5% auto 0px;
   display: grid;
   border-radius: 5px;
-  width: 450px;
-  padding: 20px;
+  width: 90%;
+  padding: 5%;
   background: white;
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
 }

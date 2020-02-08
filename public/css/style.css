@@ -8,6 +8,7 @@
 
 .todoList {
   margin: auto;
+  padding: 50px;
   display: none;
   width: 35vw;
 }
@@ -33,7 +34,8 @@
   padding: 15px 20px;
   display: none;
   border-radius: 5px;
-  background-color: #eee;
+  margin-bottom: 10px;
+  background-color: #ddd;
 }
 
 .greyButton {
@@ -105,7 +107,7 @@ input:focus {
 .header {
   width: 100%;
   background-color: darkgrey;
-  margin: 50px auto 0px;
+  margin: auto;
   padding: 1px;
   border-radius: 5px;
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);

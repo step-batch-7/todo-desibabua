@@ -61,15 +61,11 @@ const getHeading = function({ id, heading }) {
 
 const renderHeading = function() {
   const items = JSON.parse(this.response);
-  items.forEach(item => {
-    appendHeadingToPage(item);
-  });
-};
-
-const appendHeadingToPage = function(item) {
-  const heading = getHeading(item);
   const head = document.querySelector('.head');
-  head.appendChild(heading);
+  head.innerHTML = ''
+  items.forEach(item => {
+    head.appendChild(getHeading(item));
+  });
 };
 
 const loadHeading = function() {
@@ -78,25 +74,19 @@ const loadHeading = function() {
 };
 
 const recordTodoHeading = function() {
-  const appendHeading = function() {
-    const item = JSON.parse(this.response);
-    appendHeadingToPage(item);
-  };
   const input = getInputToAppend('#inputBox');
   const form = document.querySelector('#form');
   form.style.display = 'none';
-  newReq(JSON.stringify({ input }), 'POST', '/saveHeading', appendHeading);
+  newReq(JSON.stringify({ input }), 'POST', '/saveHeading',()=>{});
+  loadHeading()
 };
 
 const addTodoItem = function() {
-  const appendItem = function() {
-    const todoItem = JSON.parse(this.response);
-    appendItemToPage(todoItem);
-  };
   const heading = document.getElementsByTagName('h1')[0];
   const id = heading.id;
   const title = getInputToAppend('#input');
-  newReq(JSON.stringify({ title, id }), 'POST', '/saveList', appendItem);
+  newReq(JSON.stringify({ title, id }), 'POST', '/saveList', ()=>{});
+  loadTodo(id.split(':')[0])
 };
 
 const renderTodo = function(lists) {

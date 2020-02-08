@@ -36,7 +36,7 @@ describe('GET', function() {
       .get('/')
       .set('Accept', '*/*')
       .expect(/<title>myTodo<\/title>/)
-      .expect('content-length', '794')
+      .expect('content-length', '853')
       .expect('content-type', /html/)
       .expect(200, done);
   });
@@ -45,7 +45,7 @@ describe('GET', function() {
     request(app.serve.bind(app))
       .get('/css/style.css')
       .set('Accept', '*/*')
-      .expect('content-length', '2196')
+      .expect('content-length', '2253')
       .expect('content-type', /css/)
       .expect(200, done);
   });
@@ -62,7 +62,7 @@ describe('GET', function() {
     request(app.serve.bind(app))
       .get('/js/xhr.js')
       .set('Accept', '*/*')
-      .expect('content-length', '4938')
+      .expect('content-length', '4687')
       .expect('content-type', /javascript/)
       .expect(200, done);
   });
@@ -73,7 +73,7 @@ describe('GET by xhr request', function() {
     request(app.serve.bind(app))
       .get('/loadHeading')
       .set('Accept', '*/*')
-      .expect('content-length', '787')
+      .expect('content-length', '565')
       .expect('content-type', /json/)
       .expect(200, done);
   });
@@ -122,7 +122,7 @@ describe('POST by xhr request', function() {
       .post('/saveList')
       .set('Accept', '*/*')
       .send('{"title":"hello", "id":"1581074678976:c" }')
-      .expect('content-length', '51')
+      .expect('content-length', '0')
       .expect(201, done);
   });
 
@@ -131,7 +131,7 @@ describe('POST by xhr request', function() {
       .post('/saveHeading')
       .set('Accept', '*/*')
       .send('{"input":"my name is khan"}')
-      .expect('content-length', '80')
+      .expect('content-length', '0')
       .expect(201, done);
   });
 

@@ -2,19 +2,25 @@
   width: 20vw;
   height: 100vh;
   background-color: lightgrey;
-  position: absolute;
+  position: fixed;
   box-shadow: 5px 15px 15px -5px rgba(0, 0, 0, 0.4);
 }
 
 .todoList {
-  margin: auto;
-  padding: 120px;
-  display: none;
-  width: 35vw;
+  padding: 20vh 0vw 0vh 20vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.todoCard {
+  width: 30vw;
+  margin:50px;
 }
 
 #searchBox {
-  position: absolute;
+  position: fixed;
+  /* position: absolute; */
   top: 30px;
   right: 20px;
   width: 400px;

@@ -21,6 +21,7 @@
   display: flex;
   background: #ddd;
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .plus {
@@ -58,6 +59,7 @@ button {
 
 input[type='checkbox'] {
   margin: 25px 25px 25px 0px;
+  cursor: pointer;
 }
 
 input:checked + p {
@@ -84,6 +86,7 @@ p {
 
 .dustbin {
   padding: 22px 5px;
+  cursor: pointer;
 }
 
 #lists {

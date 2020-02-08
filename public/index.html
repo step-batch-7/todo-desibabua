@@ -5,8 +5,9 @@
     <title>myTodo</title>
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/xhr.js"></script>
+    <script src="js/eventListener.js"></script>
   </head>
-  <body onload="loadHeading()">
+  <body onload="loadHeading();attachEvents()">
     <div class="sideBar">
       <div class="heading">
         <h2>
@@ -14,7 +15,7 @@
         </h2>
       </div>
       <div id="form">
-        <input type="text" name="" id="inputBox" required autocomplete="off"/>
+        <input type="text" name="" id="inputBox" required autocomplete="off" />
         <button type="submit" class="greyButton" onclick="recordTodoHeading()">
           save
         </button>
@@ -22,7 +23,6 @@
       </div>
       <div class="head"></div>
     </div>
-    <div class="todoList">
-    </div>
+    <div class="todoList"></div>
   </body>
 </html>

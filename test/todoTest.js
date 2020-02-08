@@ -45,7 +45,7 @@ describe('GET', function() {
     request(app.serve.bind(app))
       .get('/css/style.css')
       .set('Accept', '*/*')
-      .expect('content-length', '2037')
+      .expect('content-length', '2196')
       .expect('content-type', /css/)
       .expect(200, done);
   });
@@ -62,7 +62,7 @@ describe('GET', function() {
     request(app.serve.bind(app))
       .get('/js/xhr.js')
       .set('Accept', '*/*')
-      .expect('content-length', '4949')
+      .expect('content-length', '4938')
       .expect('content-type', /javascript/)
       .expect(200, done);
   });

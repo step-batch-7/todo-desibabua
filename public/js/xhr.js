@@ -1,11 +1,11 @@
 const htmlToElements = function(html) {
-  const template = document.createElement('template');
+  const template = document.createElement('div');
   template.innerHTML = html;
-  return template.content.firstChild;
+  return template.firstChild;
 };
 
 const createCheckBox = function(status) {
-  let checkbox = '<input type="checkbox" onclick="toggleStatus">';
+  let checkbox = '<input type="checkbox" onclick="toggleStatus()">';
   checkbox = htmlToElements(checkbox);
   checkbox.checked = status;
   return checkbox;

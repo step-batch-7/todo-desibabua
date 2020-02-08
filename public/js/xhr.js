@@ -62,7 +62,7 @@ const getHeading = function({ id, heading }) {
 const renderHeading = function() {
   const items = JSON.parse(this.response);
   const head = document.querySelector('.head');
-  head.innerHTML = ''
+  head.innerHTML = '';
   items.forEach(item => {
     head.appendChild(getHeading(item));
   });
@@ -77,16 +77,16 @@ const recordTodoHeading = function() {
   const input = getInputToAppend('#inputBox');
   const form = document.querySelector('#form');
   form.style.display = 'none';
-  newReq(JSON.stringify({ input }), 'POST', '/saveHeading',()=>{});
-  loadHeading()
+  newReq(JSON.stringify({ input }), 'POST', '/saveHeading', () => {});
+  loadHeading();
 };
 
 const addTodoItem = function() {
   const heading = document.getElementsByTagName('h1')[0];
   const id = heading.id;
   const title = getInputToAppend('#input');
-  newReq(JSON.stringify({ title, id }), 'POST', '/saveList', ()=>{});
-  loadTodo(id.split(':')[0])
+  newReq(JSON.stringify({ title, id }), 'POST', '/saveList', () => {});
+  loadTodo(id.split(':')[0]);
 };
 
 const renderTodo = function(lists) {

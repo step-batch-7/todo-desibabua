@@ -46,21 +46,21 @@ dataStructure =
 
 --done-- add delete functionality to heading
 
-* modify css
+--done-- modify css
 
-* refactor code
+--done-- refactor code
 
-* dataStructure
+--done-- dataStructure
 
 /====================
-
-* Edit title: Ability to edit their existing todo list title
-
-* Edit tasks: Ability to edit their existing tasks
 
 * Search by title:  Search the list by its title words
 
 * Search by tasks: Search the todo item by its matched words
+
+* Edit title: Ability to edit their existing todo list title
+
+* Edit tasks: Ability to edit their existing tasks
 
 * User Todo: A user can log in and log out off their account and work on their own todos
 

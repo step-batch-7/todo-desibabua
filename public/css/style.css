@@ -8,9 +8,16 @@
 
 .todoList {
   margin: auto;
-  padding: 50px;
+  padding: 120px;
   display: none;
   width: 35vw;
+}
+
+#searchBox {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  width: 400px;
 }
 
 .heading {
@@ -44,9 +51,7 @@
 }
 
 #inputBox {
-  font-size: 1.5rem;
   width: 94%;
-  background: transparent;
 }
 
 button {
@@ -99,7 +104,8 @@ input[type='text'] {
   padding-left: 10px;
   width: 75%;
   border-bottom: 2px solid darkgrey;
-  font-size: 20px;
+  font-size: 1.5rem;
+  background: transparent;
 }
 
 input:focus {

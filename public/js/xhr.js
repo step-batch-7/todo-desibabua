@@ -18,22 +18,21 @@ const deleteHeading = function(id) {
 };
 
 const appendItemToPage = function({ id, title, done }) {
-  const lists = document.querySelector('#lists');
+  const lists = document.querySelector('.lists');
   const status = done ? 'checked' : '';
   const html = `
     <div class="container" id=${id}>
       <input type="checkbox" onclick="toggleStatus()" ${status}>
       <p>${title}</p>
-      <img src="images/dustbin.png" width="20px" height="20px" class="dustbin" onclick="deleteTodo(${id})">
+      <img src="images/dustbin.png" width="20px" height="20px" class="dustbin" onclick="deleteTodo('${id}')">
     </div>`;
   const container = htmlToElements(html);
   lists.appendChild(container);
 };
 
-const getInputToAppend = function(id) {
-  const input = document.querySelector(id);
-  const inputText = input.value;
-  input.value = '';
+const getInputToAppend = function(inputHtml) {
+  const inputText = inputHtml.value;
+  inputHtml.value = '';
   return inputText;
 };
 
@@ -61,19 +60,19 @@ const loadHeading = function() {
 };
 
 const recordTodoHeading = function() {
-  const input = getInputToAppend('#inputBox');
+  const inputHtml = document.querySelector('#inputBox');
+  const input = getInputToAppend(inputHtml);
   const form = document.querySelector('#form');
   form.style.display = 'none';
   newReq(JSON.stringify({ input }), 'POST', '/saveHeading', () => {});
   loadHeading();
 };
 
-const addTodoItem = function() {
-  const heading = document.getElementsByTagName('h1')[0];
-  const id = heading.id;
-  const title = getInputToAppend('#input');
+const addTodoItem = function(id) {
+  const inputHtml = event.target.previousElementSibling;
+  const title = getInputToAppend(inputHtml);
   newReq(JSON.stringify({ title, id }), 'POST', '/saveList', () => {});
-  loadTodo(id.split(':')[0]);
+  loadTodo(id);
 };
 
 const renderTodo = function(lists) {
@@ -86,13 +85,13 @@ const createTodoPage = function(id, title) {
   return `
     <div class="todoCard">
       <div class="header">
-        <h1 id=${id}:c >${title}</h1>
+        <h1 >${title}</h1>
       </div>
-      <div id="listContainer">
-          <div id="lists"></div>
-          <div class="taskInput">
-          <input type="text" id="input" onkeydown="attachEnter('#button')" />
-          <div id="button" onclick="addTodoItem()" autocomplete="off">+</div>
+      <div class="listContainer">
+        <div class="lists" id=${id}:c ></div>
+        <div class="taskInput">
+          <input type="text" class="input" onkeydown="attachEnter('.button')" />
+          <div class="button" onclick="addTodoItem('${id}')" autocomplete="off">+</div>
         </div>
       </div>
     </div>`;
@@ -110,14 +109,14 @@ const loadTodo = function(taskId) {
 
 const toggleStatus = function() {
   const itemId = event.target.parentElement.id;
-  const todoId = document.getElementsByTagName('h1')[0].id;
+  const todoId = document.getElementById(itemId).parentElement.id;
   newReq(JSON.stringify({ itemId, todoId }), 'POST', '/toggleStatus', () => {});
 };
 
 const deleteTodo = function(itemId) {
-  const todoId = document.getElementsByTagName('h1')[0].id;
+  const todoId = document.getElementById(itemId).parentElement.id;
   const removeChild = function() {
-    const lists = document.getElementById('lists');
+    const lists = document.querySelector('.lists');
     const child = document.getElementById(this.response);
     lists.removeChild(child);
   };

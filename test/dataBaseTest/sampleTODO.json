@@ -18,12 +18,7 @@
         "title": "eat food",
         "done": false
       }
-    ],
-    "currentlyAdded": {
-      "id": "1581074701678",
-      "title": "eat food",
-      "done": false
-    }
+    ]
   },
   {
     "id": "1581074707115",
@@ -34,11 +29,6 @@
         "title": "make an todo app",
         "done": false
       }
-    ],
-    "currentlyAdded": {
-      "id": "1581074717181",
-      "title": "make an todo app",
-      "done": false
-    }
+    ]
   }
 ]

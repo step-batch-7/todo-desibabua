@@ -35,6 +35,16 @@ describe('GET', function() {
     request(app.serve.bind(app))
       .get('/')
       .set('Accept', '*/*')
+      .expect(/<title>Home<\/title>/)
+      .expect('content-length', '756')
+      .expect('content-type', /html/)
+      .expect(200, done);
+  });
+
+  it('should respond with todo.html when requested', function(done) {
+    request(app.serve.bind(app))
+      .get('/todo.html')
+      .set('Accept', '*/*')
       .expect(/<title>myTodo<\/title>/)
       .expect('content-length', '1007')
       .expect('content-type', /html/)
@@ -84,6 +94,7 @@ describe('POST by xhr request', function() {
     request(app.serve.bind(app))
       .post('/loadTodo')
       .set('Accept', '*/*')
+      .set('content-type', 'application/json')
       .send('{"taskId":"1581074678976"}')
       .expect('content-length', '332')
       .expect('content-type', /json/)
@@ -94,6 +105,7 @@ describe('POST by xhr request', function() {
     request(app.serve.bind(app))
       .post('/toggleStatus')
       .set('Accept', '*/*')
+      .set('content-type', 'application/json')
       .send('{"itemId":"1581074691762","todoId":"1581074678976"}')
       .expect('content-length', '0')
       .expect(201, done);
@@ -103,6 +115,7 @@ describe('POST by xhr request', function() {
     request(app.serve.bind(app))
       .post('/toggleStatus')
       .set('Accept', '*/*')
+      .set('content-type', 'application/json')
       .send('{"itemId":"1581074697060","todoId":"1581074678976"}')
       .expect('content-length', '0')
       .expect(201, done);
@@ -112,6 +125,7 @@ describe('POST by xhr request', function() {
     request(app.serve.bind(app))
       .post('/deleteList')
       .set('Accept', '*/*')
+      .set('content-type', 'application/json')
       .send('{"itemId":"1581074691762","todoId":"1581074678976"}')
       .expect('content-length', '13')
       .expect(201, done);
@@ -121,6 +135,7 @@ describe('POST by xhr request', function() {
     request(app.serve.bind(app))
       .post('/saveList')
       .set('Accept', '*/*')
+      .set('content-type', 'application/json')
       .send('{"title":"hello", "id":"1581074678976:c" }')
       .expect('content-length', '0')
       .expect(201, done);
@@ -130,6 +145,7 @@ describe('POST by xhr request', function() {
     request(app.serve.bind(app))
       .post('/saveHeading')
       .set('Accept', '*/*')
+      .set('content-type', 'application/json')
       .send('{"input":"my name is khan"}')
       .expect('content-length', '0')
       .expect(201, done);
@@ -139,6 +155,7 @@ describe('POST by xhr request', function() {
     request(app.serve.bind(app))
       .post('/deleteHeading')
       .set('Accept', '*/*')
+      .set('content-type', 'application/json')
       .send('{"id":"1581074678976"}')
       .expect('content-length', '22')
       .expect(201, done);

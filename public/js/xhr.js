@@ -103,6 +103,21 @@ const loadTodo = function(taskId) {
   newReq(JSON.stringify({ taskId }), 'POST', '/loadTodo', callBack);
 };
 
+const filterTodo = function() {
+  const searchValue = event.target.value;
+  const callBack = function() {
+    const todoList = JSON.parse(this.response);
+    const form = document.querySelector('.todoList');
+    form.innerHTML = '';
+    todoList.forEach(todo => {
+      const { id, heading, list } = todo;
+      const todoHtml = createTodoPage(id, heading, list);
+      form.appendChild(htmlToElements(todoHtml));
+    });
+  };
+  newReq(JSON.stringify({ searchValue }), 'POST', '/filterTodo', callBack);
+};
+
 const toggleStatus = function() {
   const itemId = event.target.parentElement.id;
   const todoId = document.getElementById(itemId).parentElement.id;

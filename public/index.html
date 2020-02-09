@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<title>myTodo</title>
-		<link rel="stylesheet" href="css/style.css" />
-		<script src="js/xhr.js"></script>
-		<script src="js/eventListener.js"></script>
-	</head>
-	<body onload="loadHeading();attachEvents()">
-		<div class="sideBar">
-			<div class="heading">
-				<h2>
-					Task Lists <span class="plus" onclick="showForm('#form')"> + </span>
-				</h2>
-			</div>
-			<div id="form">
-				<input type="text" name="" id="inputBox" required autocomplete="off" />
-				<button type="submit" class="greyButton" onclick="recordTodoHeading()">
-					save
-				</button>
-				<button onclick="hideForm()">cancel</button>
-			</div>
-			<div class="head"></div>
-		</div>
-		<div class="todoList"></div>
-		<div id="searchBox">
-			<input type="text" id="search" placeholder="Search here ....." />
-		</div>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>myTodo</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/xhr.js"></script>
+    <script src="js/eventListener.js"></script>
+  </head>
+  <body onload="loadHeading();attachEvents()">
+    <div class="sideBar">
+      <div class="heading">
+        <h2>
+          Task Lists <span class="plus" onclick="showForm('#form')"> + </span>
+        </h2>
+      </div>
+      <div id="form">
+        <input type="text" name="" id="inputBox" required autocomplete="off" />
+        <button type="submit" class="greyButton" onclick="recordTodoHeading()">
+          save
+        </button>
+        <button onclick="hideForm()">cancel</button>
+      </div>
+      <div class="head"></div>
+    </div>
+    <div class="todoList"></div>
+    <div id="searchBox">
+      <input
+        type="text"
+        id="search"
+        placeholder="Search here ....."
+        onkeyup="filterTodo()"
+      />
+    </div>
+  </body>
 </html>

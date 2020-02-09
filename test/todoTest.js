@@ -36,7 +36,7 @@ describe('GET', function() {
       .get('/')
       .set('Accept', '*/*')
       .expect(/<title>myTodo<\/title>/)
-      .expect('content-length', '870')
+      .expect('content-length', '1007')
       .expect('content-type', /html/)
       .expect(200, done);
   });
@@ -62,7 +62,7 @@ describe('GET', function() {
     request(app.serve.bind(app))
       .get('/js/xhr.js')
       .set('Accept', '*/*')
-      .expect('content-length', '4354')
+      .expect('content-length', '4745')
       .expect('content-type', /javascript/)
       .expect(200, done);
   });
@@ -85,7 +85,7 @@ describe('POST by xhr request', function() {
       .post('/loadTodo')
       .set('Accept', '*/*')
       .send('{"taskId":"1581074678976"}')
-      .expect('content-length', '307')
+      .expect('content-length', '332')
       .expect('content-type', /json/)
       .expect(200, done);
   });

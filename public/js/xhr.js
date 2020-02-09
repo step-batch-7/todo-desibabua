@@ -17,19 +17,6 @@ const deleteHeading = function(id) {
   newReq(JSON.stringify({ id }), 'POST', '/deleteHeading', removeTodo);
 };
 
-const appendItemToPage = function({ id, title, done }) {
-  const lists = document.querySelector('.lists');
-  const status = done ? 'checked' : '';
-  const html = `
-    <div class="container" id=${id}>
-      <input type="checkbox" onclick="toggleStatus()" ${status}>
-      <p>${title}</p>
-      <img src="images/dustbin.png" width="20px" height="20px" class="dustbin" onclick="deleteTodo('${id}')">
-    </div>`;
-  const container = htmlToElements(html);
-  lists.appendChild(container);
-};
-
 const getInputToAppend = function(inputHtml) {
   const inputText = inputHtml.value;
   inputHtml.value = '';
@@ -39,8 +26,8 @@ const getInputToAppend = function(inputHtml) {
 const getHeading = function({ id, heading }) {
   let html = `
   <div class='singleHead' id=${id}>
-    <h3 onclick="loadTodo(${id})">${heading}</h3>
-    <img src="images/dustbin.png" width="20px" height="20px" class="dustbin" onclick="deleteHeading('${id}')">
+  <h3 onclick="loadTodo(${id})">${heading}</h3>
+  <img src="images/dustbin.png" width="20px" height="20px" class="dustbin" onclick="deleteHeading('${id}')">
   </div>`;
   return htmlToElements(html);
 };
@@ -75,20 +62,30 @@ const addTodoItem = function(id) {
   loadTodo(id);
 };
 
-const renderTodo = function(lists) {
-  lists.forEach(item => {
-    appendItemToPage(item);
-  });
+const getTodoItem = function({ id, title, done }) {
+  const status = done ? 'checked' : '';
+  return `
+    <div class="container" id=${id}>
+      <input type="checkbox" onclick="toggleStatus()" ${status}>
+      <p>${title}</p>
+      <img src="images/dustbin.png" width="20px" height="20px" class="dustbin" onclick="deleteTodo('${id}')">
+    </div>`;
 };
 
-const createTodoPage = function(id, title) {
+const renderTodo = function(lists) {
+  return lists.map(item => getTodoItem(item)).join('');
+};
+
+const createTodoPage = function(id, title, list) {
   return `
     <div class="todoCard">
       <div class="header">
         <h1 >${title}</h1>
       </div>
       <div class="listContainer">
-        <div class="lists" id=${id}:c ></div>
+        <div class="lists" id=${id}:c >
+        ${renderTodo(list)}
+        </div>
         <div class="taskInput">
           <input type="text" class="input" onkeydown="attachEnter('.button')" />
           <div class="button" onclick="addTodoItem('${id}')" autocomplete="off">+</div>
@@ -100,9 +97,8 @@ const createTodoPage = function(id, title) {
 const loadTodo = function(taskId) {
   const callBack = function() {
     const form = document.querySelector('.todoList');
-    const lists = JSON.parse(this.response);
-    form.innerHTML = createTodoPage(taskId, lists.heading);
-    renderTodo(lists.list);
+    const { id, heading, list } = JSON.parse(this.response);
+    form.innerHTML = createTodoPage(id, heading, list);
   };
   newReq(JSON.stringify({ taskId }), 'POST', '/loadTodo', callBack);
 };

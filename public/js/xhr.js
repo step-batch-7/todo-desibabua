@@ -80,7 +80,7 @@ const createTodoPage = function(id, title, list) {
   return `
     <div class="todoCard">
       <div class="header">
-        <h1 >${title}</h1>
+        <h1 contenteditable="true" onkeydown="editHeading(${id})">${title}</h1>
       </div>
       <div class="listContainer">
         <div class="lists" id=${id}:c >
@@ -92,6 +92,21 @@ const createTodoPage = function(id, title, list) {
         </div>
       </div>
     </div>`;
+};
+
+const editHeading = function(id) {
+  if (event.key === 'Enter') {
+    event.target.blur();
+    const value = event.target.innerText.trim();
+    newReq(
+      JSON.stringify({ id: `${id}:c`, value }),
+      'POST',
+      '/editHeading',
+      () => {}
+    );
+    loadHeading();
+    loadTodo(id);
+  }
 };
 
 const loadTodo = function(taskId) {
